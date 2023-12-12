@@ -290,7 +290,14 @@ class kc_ajax{
 	}
 
 	public function create_profile(){
-
+		$user = wp_get_current_user();
+		$user_roles = $user->roles;
+    	$user_role = array_shift($user_roles);
+		if($user_role !== "administrator"){
+			echo "You don't have permission";
+			header('HTTP/1.0 403 Forbidden');
+			exit;
+		};
 		$name =  !empty( $_POST['name'] ) ? $_POST['name'] : '';
 
 		if( $name == '' ){
