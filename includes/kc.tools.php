@@ -289,7 +289,7 @@ class kc_tools {
 
 			if( file_exists( $file ) && !file_exists( $__return ) ){
 				ob_start();
-				self::processImage( $file, $arg, $__return );
+				self::processImage( $file, $__return, $arg);
 				ob_end_clean();
 			}
 
@@ -298,7 +298,7 @@ class kc_tools {
 		}
 	}
 
-	public static function processImage( $localImage, $params = array(), $tempfile ){
+	public static function processImage( $localImage, $tempfile, $params = array() ){
 
 		$sData = getimagesize($localImage);
 		$origType = $sData[2];
