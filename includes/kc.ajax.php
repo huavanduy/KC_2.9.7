@@ -805,10 +805,9 @@ class kc_ajax{
 
 		    array( 'ID' => $id )
 		);
-
 		if ( false !== $result)
 		{
-            echo $this->msg( __('Your content has been saved Successful', 'kingcomposer'), 1 );
+            echo $this->msg( __('Your content has been saved Successful', 'kingcomposer'), 3 );
             kc_process_save_meta($id, $_POST['meta']);
         }
         else
@@ -885,8 +884,7 @@ class kc_ajax{
 
 		    array( 'ID' => $id )
 		);
-
-
+		
 		exit;
 
 	}
@@ -1292,7 +1290,7 @@ class kc_ajax{
 
 		$data['data']['terms'] = array();
 		foreach( $taxonomies as $taxonomy ){
-			$data['data']['terms'] = $this->get_terms( 0, '', $taxonomy, $data['data']['terms'] );
+			$data['data']['terms'] = $this->get_terms( $taxonomy, 0, '', $data['data']['terms'] );
 		}
 
 		$query = array(
@@ -1873,12 +1871,15 @@ class kc_ajax{
 	}
 	
 	public function msg( $s = '', $t = 1 ){
-		if( $t == 1 )
+		if( $t == 1 ){
 			return '<h3 class="mesg success"><i class="et-happy"></i><br />'.$s.'</h3>';
+		} else if ($t == 3){
+			return $s;
+		}
 		else return '<h3 class="mesg error"><i class="et-sad"></i><br />'.$s.'</h3>';
 	}
 
-	private function get_terms( $parent = 0, $spacing = '', $taxonomy, $data = array() ){
+	private function get_terms( $taxonomy, $parent = 0, $spacing = '', $data = array() ){
 
 		$terms = get_terms( array(
 		    'taxonomy' => $taxonomy,
@@ -1889,7 +1890,7 @@ class kc_ajax{
 		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
 		    foreach ( $terms as $term ){
 			    $data[] = array( 'name' => $spacing.$term->name, 'id' => $term->term_id, 'taxonomy' => $term->taxonomy );
-			    $data = $this->get_terms( $term->term_id, $spacing.' - ', $taxonomy, $data );
+			    $data = $this->get_terms( $taxonomy, $term->term_id, $spacing.' - ', $data );
 		    }
 		}
 

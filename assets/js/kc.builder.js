@@ -6870,7 +6870,7 @@
 				}
 			).complete(function( data ) {
 				document.title = document.raw_title;
-			    if(data.status !== 200) {
+			    if(data !== "Your content has been saved Successful") {
 				    kc.msg( 'Your content has been saved, but there seems to be an error occurs. <br />Please check all of your code and make sure there are no errors. ', 'error', 'sl-close' );
 			    }
 			});

@@ -157,6 +157,10 @@ Do you have questions or issues with KingComposer? Use these support channels ap
 7. screenshot-7.jpg
 
 == Changelog == 
+
+= 2.9.8 (11 Dec, 2023) = 
+* [Fix] Fix save action and required paramenter on PHP version > 8
+
 = 2.9.7 (11 Dec, 2023) = 
 * [Fix] Fix security vulnerabilities
 

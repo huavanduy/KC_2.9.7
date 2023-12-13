@@ -858,7 +858,7 @@ function kc_first_image( $content ) {
 function kc_screen_sort( array &$array ) {
 	$screens = array('any', '1000-5000', '1024', '999', '767', '479');
 	uksort($array, function($key1, $key2) use ($screens) {
-		return (array_search($key1, $screens) > array_search($key2, $screens));
+		return (array_search($key1, $screens) <=> array_search($key2, $screens));
 	});
 }
 
@@ -868,7 +868,7 @@ function kc_screen_sort( array &$array ) {
 function kc_abasort( array &$array, $order ) {
 	$order = array('any', '1000-5000', '1024', '999', '767', '479');
 	uksort($array, function($key1, $key2) use ($order) {
-		return (array_search($key1, $order) > array_search($key2, $order));
+		return (array_search($key1, $order) <=> array_search($key2, $order));
 	});
 }
 
